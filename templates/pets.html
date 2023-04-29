@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}All Pets{% endblock %}
+{% block content %}
+<h1>Pets</h1>
+<h2>Available Pets:</h2>
+<div class="d-flex justify-content-evenly align-items-end wrap">
+    {% for pet in available_pets %}
+    <span>
+        <img src="{{pet.photo_url}}" class="img-thumbnail" alt="Photo of a {{pet.species}}">
+        {% if pet.available %}
+        <p><a href="/{{pet.id}}">{{pet.name}}</a> is <b>{{pet.is_available()}}</b></p>
+        {% else %}
+        <p><a href="/{{pet.id}}">{{pet.name}}</a> is {{pet.is_available()}}</p>
+        {% endif %}
+    </span>
+    {% endfor %}
+</div>
+<h2>Unavailable Pets:</h2>
+<div class="d-flex justify-content-evenly align-items-end wrap">
+    {% for pet in unavailable_pets %}
+    <span>
+        <img src="{{pet.photo_url}}" class="img-thumbnail" alt="Photo of a {{pet.species}}">
+        {% if pet.available %}
+        <p><a href="/{{pet.id}}">{{pet.name}}</a> is <b>{{pet.is_available()}}</b></p>
+        {% else %}
+        <p><a href="/{{pet.id}}">{{pet.name}}</a> is {{pet.is_available()}}</p>
+        {% endif %}
+    </span>
+    {% endfor %}
+</div>
+{% endblock %}

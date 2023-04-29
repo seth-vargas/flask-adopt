@@ -1,0 +1,21 @@
+img {
+    width: 400px;
+}
+
+.wrap {
+    flex-wrap: wrap;
+}
+
+.success {
+    background-color: #00ff00;
+    color: #303030;
+}
+
+.error {
+    background-color: #ff0000;
+    color: #efefef;
+}
+
+.success, .error {
+    border-radius: 20px;
+}

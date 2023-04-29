@@ -1,0 +1,44 @@
+{% extends "base.html" %} {% block title %}Pet Info{% endblock %} 
+{% block content %}
+<h1 class="display-6 text-center">
+  {{pet.name}} {% if pet.age %} is {{pet.age}} years old{% endif %}
+</h1>
+<div class="d-flex wrap justify-content-center">
+  <img
+    src="{{pet.photo_url}}"
+    class="img-thumbnail text-center"
+    alt="Photo of a {{pet.species}}"
+  />
+</div>
+{% if pet.notes %}
+<span class="row justify-content-center display-6">Notes on {{pet.name}}</span>
+<i class="d-flex justify-content-center">{{pet.notes}}</i>
+{% endif %}
+<div>
+    
+</div>
+<span class="row justify-content-center display-6">Edit {{pet.name}}</span>
+
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <form method="POST">
+        {{ form.hidden_tag() }} 
+        {% for field in form if field.widget.input_type != 'hidden'%}
+        <div class="form-group">
+            {{field.label}} 
+            {% if field.name == "available" %}
+                {{field(class_="form-check-control")}} 
+            {% else %}
+                {{field(class_="form-control")}}
+            {% endif %} 
+            {% for err in field.errors%}
+                <small class="form-text text-danger">{{err}}</small>
+            {% endfor %}
+        </div>  
+      {% endfor %}
+      <button class="btn btn-success btn-lg">Submit</button>
+      <a href="/" class="btn btn-danger btn-lg">Go Back</a>
+    </form>
+  </div>
+</div>
+{% endblock %}
